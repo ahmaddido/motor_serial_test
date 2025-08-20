@@ -1,3 +1,5 @@
+import os
+from glob import glob
 from setuptools import setup
 
 package_name = 'motor_serial_test'
@@ -13,8 +15,8 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='ahmad',
-    maintainer_email='ahmad@example.com',
+    maintainer='ahmaddido',
+    maintainer_email='ahmed.benyamin2015@gmail.com',
     description='Simple ROS2 package to test motor serial communication with Arduino.',
     license='BSD',
     entry_points={
