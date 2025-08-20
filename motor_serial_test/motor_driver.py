@@ -16,9 +16,9 @@ class MotorDriver(Node):
 
         try:
             self.ser = serial.Serial(port, baud, timeout=1)
-            self.get_logger().info(f"✅ Connected to {port} at {baud}")
+            self.get_logger().info(f" Connected to {port} at {baud}")
         except Exception as e:
-            self.get_logger().error(f"❌ Could not open serial port: {e}")
+            self.get_logger().error(f" Could not open serial port: {e}")
             raise e
 
         # Subscriber for motor commands
@@ -37,14 +37,14 @@ class MotorDriver(Node):
     def listener_callback(self, msg):
         cmd = msg.data.strip() + "\r"
         self.ser.write(cmd.encode('utf-8'))
-        self.get_logger().info(f"➡️ Sent: {cmd.strip()}")
+        self.get_logger().info(f" Sent: {cmd.strip()}")
 
     def read_encoders(self):
         self.ser.write(b"e\r")
         resp = self.ser.readline().decode('utf-8').strip()
         if resp:
             self.encoder_pub.publish(String(data=resp))
-            self.get_logger().info(f"⬅️ Encoders: {resp}")
+            self.get_logger().info(f" Encoders: {resp}")
 
 def main(args=None):
     rclpy.init(args=args)
