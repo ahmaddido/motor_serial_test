@@ -31,11 +31,11 @@ class MotorGui(Node):
     def send(self):
         cmd = f"o {self.m1.get()} {self.m2.get()}"
         self.pub.publish(String(data=cmd))
-        self.get_logger().info(f"➡️ Published: {cmd}")
+        self.get_logger().info(f" Published: {cmd}")
 
     def stop(self):
         self.pub.publish(String(data="o 0 0"))
-        self.get_logger().info("🛑 Published stop command")
+        self.get_logger().info("Published stop command")
 
     def enc_callback(self, msg):
         self.enc_label.config(text=f"Encoders: {msg.data}")
